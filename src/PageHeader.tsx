@@ -14,7 +14,7 @@ function PageHeader() {
       <div className="App" style={{display: 'flex', justifyContent: 'center', position: 'absolute', top: '0', left: '0'}}>
       <RuxGlobalStatusBar
         appDomain="Dashboard"
-        appState="State"
+        appState="Dev"
         appVersion="1.0"
         username="Jennifer P."
       >
