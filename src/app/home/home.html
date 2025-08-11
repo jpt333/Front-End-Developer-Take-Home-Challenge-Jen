@@ -1,0 +1,45 @@
+<div>
+  <h2>POTATO!!!</h2>
+</div>
+<h2>Contact List</h2>
+
+<table border="1" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ground</th>
+      <th>Satellite</th>
+      <th>Step</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Azimuth</th>
+      <th>Elevation</th>
+      <th>Resolution</th>
+      <th>Alerts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contact of contacts">
+      <td>{{ contact.contactName }}</td>
+      <td>{{ contact.contactGround }}</td>
+      <td>{{ contact.contactSatellite }}</td>
+      <td>{{ contact.contactStep }}</td>
+      <td>{{ contact.contactLatitude }}</td>
+      <td>{{ contact.contactLongitude }}</td>
+      <td>{{ contact.contactAzimuth }}</td>
+      <td>{{ contact.contactElevation }}</td>
+      <td>{{ contact.contactResolution }}</td>
+      <td>
+        <div *ngIf="contact.alerts?.length > 0; else noAlert">
+          <ul>
+            <li *ngFor="let alert of contact.alerts">
+              {{ alert.errorMessage }} ({{ alert.errorSeverity }})
+            </li>
+          </ul>
+        </div>
+        <ng-template #noAlert>No Alerts</ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>BANANA !!!</div>
