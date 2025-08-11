@@ -3,33 +3,33 @@
 </div>
 <h2>Contact List</h2>
 
-<table border="1" cellspacing="0" cellpadding="5">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Ground</th>
-      <th>Satellite</th>
-      <th>Step</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Azimuth</th>
-      <th>Elevation</th>
-      <th>Resolution</th>
-      <th>Alerts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let contact of contacts">
-      <td>{{ contact.contactName }}</td>
-      <td>{{ contact.contactGround }}</td>
-      <td>{{ contact.contactSatellite }}</td>
-      <td>{{ contact.contactStep }}</td>
-      <td>{{ contact.contactLatitude }}</td>
-      <td>{{ contact.contactLongitude }}</td>
-      <td>{{ contact.contactAzimuth }}</td>
-      <td>{{ contact.contactElevation }}</td>
-      <td>{{ contact.contactResolution }}</td>
-      <td>
+<rux-table>
+  <rux-table-header>
+    <rux-table-header-row>
+      <rux-table-header-cell>Name</rux-table-header-cell>
+      <rux-table-header-cell>Ground</rux-table-header-cell>
+      <rux-table-header-cell>Satellite</rux-table-header-cell>
+      <rux-table-header-cell>Latitude</rux-table-header-cell>
+      <rux-table-header-cell>Longitude</rux-table-header-cell>
+      <rux-table-header-cell>Azimuth</rux-table-header-cell>
+      <rux-table-header-cell>Elevation</rux-table-header-cell>
+      <rux-table-header-cell>El/Dec</rux-table-header-cell>
+      <rux-table-header-cell>Resolution</rux-table-header-cell>
+      <rux-table-header-cell>Alerts</rux-table-header-cell>
+    </rux-table-header-row>
+  </rux-table-header>
+  <rux-table-body>
+    <rux-table-row *ngFor="let contact of contacts">
+      <rux-table-cell>{{ contact.contactName }}</rux-table-cell>
+      <rux-table-cell>{{ contact.contactGround }}</rux-table-cell>
+      <rux-table-cell>{{ contact.contactSatellite }}</rux-table-cell>
+      <rux-table-cell>{{ contact.contactStep }}</rux-table-cell>
+      <rux-table-cell>{{ contact.contactLatitude }}</rux-table-cell>
+      <rux-table-cell>{{ contact.contactLongitude }}</rux-table-cell>
+      <rux-table-cell>{{ contact.contactAzimuth }}</rux-table-cell>
+      <rux-table-cell>{{ contact.contactElevation }}</rux-table-cell>
+      <rux-table-cell>{{ contact.contactResolution }}</rux-table-cell>
+      <rux-table-cell>
         <div *ngIf="contact.alerts?.length > 0; else noAlert">
           <ul>
             <li *ngFor="let alert of contact.alerts">
@@ -38,8 +38,7 @@
           </ul>
         </div>
         <ng-template #noAlert>No Alerts</ng-template>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div>BANANA !!!</div>
+      </rux-table-cell>
+    </rux-table-row>
+  </rux-table-body>
+</rux-table>
