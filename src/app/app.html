@@ -1,1 +1,35 @@
-<h1>POTATO!!!</h1>
+<!--Global Status Bar of the Dashboard-->
+<div style="display: flex; justify-content: center">
+  <rux-global-status-bar
+    include-icon="true"
+    app-name="Contacts Dashboard"
+    app-version="1.0"
+    menu-icon="apps"
+    username=""
+    app-state-color="tag1"
+    app-state="Developmet"
+  >
+    <rux-clock hide-labels=""></rux-clock>
+    <div slot="right-side" style="display: flex; gap: 0.5rem">
+      <rux-icon
+        icon="satellite-transmit"
+        style="color: var(--color-status-normal)"
+        size="32px"
+      ></rux-icon>
+      <rux-icon
+        icon="satellite-receive"
+        style="color: var(--color-status-caution)"
+        size="32px"
+      ></rux-icon>
+      <rux-icon
+        icon="satellite-off"
+        style="color: var(--color-status-critical)"
+        size="32px"
+      ></rux-icon>
+    </div>
+  </rux-global-status-bar>
+</div>
+
+<div>
+  <h1>Contacts</h1>
+</div>
