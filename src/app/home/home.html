@@ -1,44 +1,45 @@
-<div>
-  <h2>POTATO!!!</h2>
+<div style="padding: 2%">
+  <rux-table>
+    <rux-table-header>
+      <rux-table-header-row>
+        <rux-table-header-cell>Contact Name</rux-table-header-cell>
+        <rux-table-header-cell>Ground</rux-table-header-cell>
+        <rux-table-header-cell>Satellite</rux-table-header-cell>
+        <rux-table-header-cell>Step</rux-table-header-cell>
+        <rux-table-header-cell>Begin Timestamp</rux-table-header-cell>
+        <rux-table-header-cell>End Timestamp</rux-table-header-cell>
+        <rux-table-header-cell>Latitude</rux-table-header-cell>
+        <rux-table-header-cell>Longitude</rux-table-header-cell>
+        <rux-table-header-cell>Azimuth</rux-table-header-cell>
+        <rux-table-header-cell>Elevation</rux-table-header-cell>
+        <rux-table-header-cell>Resolution</rux-table-header-cell>
+        <rux-table-header-cell>Alerts</rux-table-header-cell>
+      </rux-table-header-row>
+    </rux-table-header>
+    <rux-table-body>
+      <rux-table-row *ngFor="let contact of contacts">
+        <rux-table-cell>{{ contact.contactName }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactGround }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactSatellite }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactStep }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactBeginTimestamp }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactEndTimestamp }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactLatitude }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactLongitude }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactAzimuth }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactElevation }}</rux-table-cell>
+        <rux-table-cell>{{ contact.contactResolution }}</rux-table-cell>
+        <rux-table-cell>
+          <div *ngIf="contact.alerts?.length > 0; else noAlert">
+            <ul>
+              <li *ngFor="let alert of contact.alerts">
+                {{ alert.errorMessage }} ({{ alert.errorSeverity }})
+              </li>
+            </ul>
+          </div>
+          <ng-template #noAlert>No Alerts</ng-template>
+        </rux-table-cell>
+      </rux-table-row>
+    </rux-table-body>
+  </rux-table>
 </div>
-<h2>Contact List</h2>
-
-<rux-table>
-  <rux-table-header>
-    <rux-table-header-row>
-      <rux-table-header-cell>Name</rux-table-header-cell>
-      <rux-table-header-cell>Ground</rux-table-header-cell>
-      <rux-table-header-cell>Satellite</rux-table-header-cell>
-      <rux-table-header-cell>Latitude</rux-table-header-cell>
-      <rux-table-header-cell>Longitude</rux-table-header-cell>
-      <rux-table-header-cell>Azimuth</rux-table-header-cell>
-      <rux-table-header-cell>Elevation</rux-table-header-cell>
-      <rux-table-header-cell>El/Dec</rux-table-header-cell>
-      <rux-table-header-cell>Resolution</rux-table-header-cell>
-      <rux-table-header-cell>Alerts</rux-table-header-cell>
-    </rux-table-header-row>
-  </rux-table-header>
-  <rux-table-body>
-    <rux-table-row *ngFor="let contact of contacts">
-      <rux-table-cell>{{ contact.contactName }}</rux-table-cell>
-      <rux-table-cell>{{ contact.contactGround }}</rux-table-cell>
-      <rux-table-cell>{{ contact.contactSatellite }}</rux-table-cell>
-      <rux-table-cell>{{ contact.contactStep }}</rux-table-cell>
-      <rux-table-cell>{{ contact.contactLatitude }}</rux-table-cell>
-      <rux-table-cell>{{ contact.contactLongitude }}</rux-table-cell>
-      <rux-table-cell>{{ contact.contactAzimuth }}</rux-table-cell>
-      <rux-table-cell>{{ contact.contactElevation }}</rux-table-cell>
-      <rux-table-cell>{{ contact.contactResolution }}</rux-table-cell>
-      <rux-table-cell>
-        <div *ngIf="contact.alerts?.length > 0; else noAlert">
-          <ul>
-            <li *ngFor="let alert of contact.alerts">
-              {{ alert.errorMessage }} ({{ alert.errorSeverity }})
-            </li>
-          </ul>
-        </div>
-        <ng-template #noAlert>No Alerts</ng-template>
-      </rux-table-cell>
-    </rux-table-row>
-  </rux-table-body>
-</rux-table>

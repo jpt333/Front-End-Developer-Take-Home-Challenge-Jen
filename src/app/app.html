@@ -7,9 +7,18 @@
     menu-icon="apps"
     username=""
     app-state-color="tag1"
-    app-state="Developmet"
+    app-state="Development"
   >
-    <rux-clock hide-labels=""></rux-clock>
+    <div style="padding-right: 10%">
+      <rux-tabs id="alert-dashboard-id">
+        <rux-tab id="contact-dashboard-id">Contacts</rux-tab>
+        <rux-tab id="alert-dashboard-id">Alerts</rux-tab>
+      </rux-tabs>
+    </div>
+
+    <rux-clock></rux-clock>
+    <!-- <rux-button slot="right-side">Emergency shut off</rux-button> -->
+
     <div slot="right-side" style="display: flex; gap: 0.5rem">
       <rux-icon
         icon="satellite-transmit"
@@ -31,5 +40,5 @@
 </div>
 
 <div>
-  <h1>Contacts</h1>
+  <h1 style="padding-left: 2%">Contacts</h1>
 </div>
