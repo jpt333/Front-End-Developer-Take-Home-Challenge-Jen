@@ -5,11 +5,12 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app';
 import { HomeComponent } from './home/home';
+import { AlertDashboardComponent } from './alert-dashboard/alert.dashboard';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, AlertDashboardComponent],
   imports: [BrowserModule, AstroComponentsModule],
   providers: [provideHttpClient()],
-  bootstrap: [AppComponent, HomeComponent],
+  bootstrap: [AppComponent, HomeComponent, AlertDashboardComponent],
 })
 export class AppModule {}

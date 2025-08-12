@@ -1,0 +1,29 @@
+<div>
+  <h1 style="padding-left: 2%">Alerts</h1>
+</div>
+<div style="padding: 2%">
+  <rux-table>
+    <rux-table-header>
+      <rux-table-header-row>
+        <rux-table-header-cell>Alert Message</rux-table-header-cell>
+        <rux-table-header-cell>Contact Name</rux-table-header-cell>
+        <rux-table-header-cell>Begin Timestamp</rux-table-header-cell>
+        <rux-table-header-cell>End Timestamp</rux-table-header-cell>
+        <rux-table-header-cell>Details</rux-table-header-cell>
+        <rux-table-header-cell>Acknowledge</rux-table-header-cell>
+      </rux-table-header-row>
+    </rux-table-header>
+    <rux-table-body>
+      <rux-table-row *ngFor="let contact of contacts">
+        <ng-container *ngFor="let alert of contact.alerts">
+          <rux-table-cell>{{ alert.errorMessage }}</rux-table-cell>
+          <rux-table-cell>{{ contact.contactName }}</rux-table-cell>
+          <rux-table-cell>{{ contact.contactBeginTimestamp }}</rux-table-cell>
+          <rux-table-cell>{{ contact.contactEndTimestamp }}</rux-table-cell>
+          <rux-table-cell>hi</rux-table-cell>
+          <rux-table-cell>hi</rux-table-cell>
+        </ng-container>
+      </rux-table-row>
+    </rux-table-body>
+  </rux-table>
+</div>

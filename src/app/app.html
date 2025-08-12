@@ -10,7 +10,7 @@
     app-state="Development"
   >
     <div style="padding-right: 10%">
-      <rux-tabs id="alert-dashboard-id">
+      <rux-tabs id="tab-set-id">
         <rux-tab id="contact-dashboard-id">Contacts</rux-tab>
         <rux-tab id="alert-dashboard-id">Alerts</rux-tab>
       </rux-tabs>
@@ -39,6 +39,27 @@
   </rux-global-status-bar>
 </div>
 
-<div>
-  <h1 style="padding-left: 2%">Contacts</h1>
-</div>
+<rux-tab-panels aria-labelledby="tab-set-id">
+  <rux-tab-panel aria-labelledby="contact-dashboard-id">
+    <div
+      style="
+        padding: 1vw;
+        border: rgba(255, 255, 255, 0.15) dashed 1px;
+        font-family: monospace;
+      "
+    >
+      <app-home></app-home>
+    </div>
+  </rux-tab-panel>
+  <rux-tab-panel aria-labelledby="alert-dashboard-id">
+    <div
+      style="
+        padding: 1vw;
+        border: rgba(255, 255, 255, 0.15) dashed 1px;
+        font-family: monospace;
+      "
+    >
+      <app-alert-dashboard></app-alert-dashboard>
+    </div>
+  </rux-tab-panel>
+</rux-tab-panels>
