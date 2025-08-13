@@ -31,7 +31,6 @@ export class AlertDashboardComponent {
     this.isDetailsOpen = true;
   }
 
-  isButtonDisabled = false;
   selectedContactt: any = null;
 
   acknowledgedAlerts = new Set<string>();

@@ -18,3 +18,8 @@
   overflow-x: hidden;
   box-sizing: border-box;
 }
+
+rux-push-button {
+  --background-color: #571900;
+  color: white;
+}

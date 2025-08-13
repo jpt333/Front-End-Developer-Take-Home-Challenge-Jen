@@ -2,12 +2,13 @@
   <h1 style="padding-left: 2%">Alerts</h1>
 </div>
 <div style="padding: 2%">
-  <rux-table>
+  <rux-table matSort>
     <rux-table-header>
       <rux-table-header-row>
         <rux-table-header-cell>Alert Message</rux-table-header-cell>
         <rux-table-header-cell>Contact Name</rux-table-header-cell>
         <rux-table-header-cell>Contact Time</rux-table-header-cell>
+        <rux-table-header-cell>Error Time</rux-table-header-cell>
         <rux-table-header-cell>Severity</rux-table-header-cell>
         <rux-table-header-cell>Details</rux-table-header-cell>
         <rux-table-header-cell>Acknowledge</rux-table-header-cell>
@@ -26,6 +27,7 @@
                 contact.contactEndTimestamp * 1000 | date : "short"
               }}</rux-table-cell
             >
+            <rux-table-cell>{{ alert.errorTime }}</rux-table-cell>
             <rux-table-cell>{{ alert.errorSeverity }}</rux-table-cell>
             <!--Show Details Logic-->
             <rux-table-cell>
@@ -55,6 +57,7 @@
             </rux-table-cell>
             <rux-table-cell>
               <rux-push-button
+                id="acknowlButton"
                 checked=""
                 label="Acknowledge"
                 (click)="isAcknowledged(alert, contact)"
