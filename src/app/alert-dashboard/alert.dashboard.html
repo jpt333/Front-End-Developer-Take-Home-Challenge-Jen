@@ -7,23 +7,63 @@
       <rux-table-header-row>
         <rux-table-header-cell>Alert Message</rux-table-header-cell>
         <rux-table-header-cell>Contact Name</rux-table-header-cell>
-        <rux-table-header-cell>Begin Timestamp</rux-table-header-cell>
-        <rux-table-header-cell>End Timestamp</rux-table-header-cell>
+        <rux-table-header-cell>Contact Time</rux-table-header-cell>
+        <rux-table-header-cell>Severity</rux-table-header-cell>
         <rux-table-header-cell>Details</rux-table-header-cell>
         <rux-table-header-cell>Acknowledge</rux-table-header-cell>
       </rux-table-header-row>
     </rux-table-header>
     <rux-table-body>
-      <rux-table-row *ngFor="let contact of contacts">
-        <ng-container *ngFor="let alert of contact.alerts">
-          <rux-table-cell>{{ alert.errorMessage }}</rux-table-cell>
-          <rux-table-cell>{{ contact.contactName }}</rux-table-cell>
-          <rux-table-cell>{{ contact.contactBeginTimestamp }}</rux-table-cell>
-          <rux-table-cell>{{ contact.contactEndTimestamp }}</rux-table-cell>
-          <rux-table-cell>hi</rux-table-cell>
-          <rux-table-cell>hi</rux-table-cell>
+      <ng-container *ngFor="let contact of contacts">
+        <!-- If alerts exist, else don't show other contacts-->
+        <ng-container *ngIf="contact.alerts && contact.alerts.length > 0">
+          <rux-table-row *ngFor="let alert of contact.alerts">
+            <rux-table-cell>{{ alert.errorMessage }}</rux-table-cell>
+            <rux-table-cell>{{ contact.contactName }}</rux-table-cell>
+            <rux-table-cell
+              >{{ contact.contactBeginTimestamp * 1000 | date : "short" }} -
+              {{
+                contact.contactEndTimestamp * 1000 | date : "short"
+              }}</rux-table-cell
+            >
+            <rux-table-cell>{{ alert.errorSeverity }}</rux-table-cell>
+            <!--Show Details Logic-->
+            <rux-table-cell>
+              <div style="padding: 5%; display: flex; justify-content: center">
+                <rux-button (click)="showDetails()"> Show Details </rux-button>
+              </div>
+
+              <rux-dialog
+                [open]="isDetailsOpen"
+                (ruxdialogclosed)="isDetailsOpen = false"
+                header="Details"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  max-width: 600px;
+                  width: 100%;
+                  overflow-x: hidden;
+                  box-sizing: border-box;
+                "
+              >
+                <div class="dialog-details">
+                  <div>Satellite: {{ contact.contactSatellite }}</div>
+                  <div style="width: auto">
+                    Contact Details: {{ contact.contactDetail }}
+                  </div>
+                  <!-- <span>Contact Details: {{ contact.contactDetail }}</span> -->
+                </div>
+
+                <rux-button slot="footer" (click)="isDetailsOpen = false">
+                  Close
+                </rux-button>
+              </rux-dialog>
+            </rux-table-cell>
+            <rux-table-cell>Acknowledge</rux-table-cell>
+          </rux-table-row>
         </ng-container>
-      </rux-table-row>
+      </ng-container>
     </rux-table-body>
   </rux-table>
 </div>

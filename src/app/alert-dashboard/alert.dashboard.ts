@@ -22,4 +22,10 @@ export class AlertDashboardComponent {
       }
     );
   }
+
+  isDetailsOpen = false;
+
+  showDetails() {
+    this.isDetailsOpen = true;
+  }
 }
