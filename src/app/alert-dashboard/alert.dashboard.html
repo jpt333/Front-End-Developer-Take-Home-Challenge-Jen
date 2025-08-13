@@ -30,29 +30,22 @@
             <!--Show Details Logic-->
             <rux-table-cell>
               <div style="padding: 5%; display: flex; justify-content: center">
-                <rux-button (click)="showDetails()"> Show Details </rux-button>
+                <rux-button (click)="showDetails(contact)">
+                  Show Details
+                </rux-button>
               </div>
 
               <rux-dialog
                 [open]="isDetailsOpen"
                 (ruxdialogclosed)="isDetailsOpen = false"
                 header="Details"
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: center;
-                  max-width: 600px;
-                  width: 100%;
-                  overflow-x: hidden;
-                  box-sizing: border-box;
-                "
+                class="dialog-details-main"
               >
-                <div class="dialog-details">
-                  <div>Satellite: {{ contact.contactSatellite }}</div>
+                <div class="dialog-details" *ngIf="selectedContact">
+                  <div>Satellite: {{ selectedContact.contactSatellite }}</div>
                   <div style="width: auto">
-                    Contact Details: {{ contact.contactDetail }}
+                    Contact Details: {{ selectedContact.contactDetail }}
                   </div>
-                  <!-- <span>Contact Details: {{ contact.contactDetail }}</span> -->
                 </div>
 
                 <rux-button slot="footer" (click)="isDetailsOpen = false">
@@ -60,7 +53,14 @@
                 </rux-button>
               </rux-dialog>
             </rux-table-cell>
-            <rux-table-cell>Acknowledge</rux-table-cell>
+            <rux-table-cell>
+              <rux-push-button
+                checked=""
+                label="Acknowledge"
+                (click)="isAcknowledged(alert, contact)"
+                [disabled]="isContactAcknowledged(alert, contact)"
+              ></rux-push-button>
+            </rux-table-cell>
           </rux-table-row>
         </ng-container>
       </ng-container>

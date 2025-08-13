@@ -24,8 +24,27 @@ export class AlertDashboardComponent {
   }
 
   isDetailsOpen = false;
+  selectedContact: any = null;
 
-  showDetails() {
+  showDetails(contact: any) {
+    this.selectedContact = contact;
     this.isDetailsOpen = true;
+  }
+
+  isButtonDisabled = false;
+  selectedContactt: any = null;
+
+  acknowledgedAlerts = new Set<string>();
+
+  isAcknowledged(alert: any, contact: any) {
+    this.acknowledgedAlerts.add(
+      alert.errorId + alert.longMessage + contact.contactName
+    );
+  }
+
+  isContactAcknowledged(alert: any, contact: any): boolean {
+    return this.acknowledgedAlerts.has(
+      alert.errorId + alert.longMessage + contact.contactName
+    );
   }
 }
