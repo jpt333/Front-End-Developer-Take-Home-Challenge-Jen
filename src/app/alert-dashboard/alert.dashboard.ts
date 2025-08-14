@@ -94,6 +94,21 @@ export class AlertDashboardComponent {
       let firstValue = a[column];
       let secondValue = b[column];
 
+      //Acknowledge
+      if (column === 'acknowledgeSort') {
+        const isAckFirst = this.isContactAcknowledged(a, a.contact);
+        const isAckSecond = this.isContactAcknowledged(b, b.contact);
+
+        if (isAckFirst === isAckSecond) return 0;
+        return this.sortDirection === 'asc'
+          ? isAckFirst
+            ? 1
+            : -1
+          : isAckFirst
+          ? -1
+          : 1;
+      }
+
       // Logic for the errorSeverity
       if (column === 'errorSeverity') {
         const indexFirst = severityOrder.indexOf(firstValue);
@@ -103,10 +118,12 @@ export class AlertDashboardComponent {
           : indexSecond - indexFirst;
       }
 
-      if (firstValue < secondValue)
+      if (firstValue < secondValue) {
         return this.sortDirection === 'asc' ? -1 : 1;
-      if (firstValue > secondValue)
+      }
+      if (firstValue > secondValue) {
         return this.sortDirection === 'asc' ? 1 : -1;
+      }
       return 0;
     });
   }

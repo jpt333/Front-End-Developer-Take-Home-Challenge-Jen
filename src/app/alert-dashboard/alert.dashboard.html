@@ -39,7 +39,13 @@
           </span></rux-table-header-cell
         >
         <rux-table-header-cell>Details</rux-table-header-cell>
-        <rux-table-header-cell>Acknowledge</rux-table-header-cell>
+        <rux-table-header-cell
+          (click)="sortData('acknowledgeSort')"
+          class="mouse-hover"
+          >Acknowledge<span *ngIf="sortedColumn === 'acknowledgeSort'">
+            {{ sortDirection === "asc" ? "↑" : "↓" }}
+          </span></rux-table-header-cell
+        >
       </rux-table-header-row>
     </rux-table-header>
     <rux-table-body>
@@ -47,7 +53,8 @@
         <rux-table-cell>{{ alert.errorMessage }}</rux-table-cell>
         <rux-table-cell>{{ alert.contactName }}</rux-table-cell>
         <rux-table-cell>
-          {{ alert.contactBeginTimestamp }} -
+          {{ alert.contactBeginTimestamp }}
+          -
           {{ alert.contactEndTimestamp }}
         </rux-table-cell>
         <rux-table-cell>{{ alert.errorTime }}</rux-table-cell>
@@ -81,6 +88,7 @@
             class="ack-button"
             (click)="isAcknowledged(alert, alert.contact)"
             [disabled]="isContactAcknowledged(alert, alert.contact)"
+            [checked]="isContactAcknowledged(alert, alert.contact)"
           >
           </rux-push-button>
         </rux-table-cell>
