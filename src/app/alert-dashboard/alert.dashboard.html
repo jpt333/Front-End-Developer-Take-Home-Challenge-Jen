@@ -2,71 +2,75 @@
   <h1 style="padding-left: 2%">Alerts</h1>
 </div>
 <div style="padding: 2%">
-  <rux-table matSort>
+  <rux-table>
     <rux-table-header>
       <rux-table-header-row>
-        <rux-table-header-cell>Alert Message</rux-table-header-cell>
+        <rux-table-header-cell (click)="sortData('errorMessage')"
+          >Alert Message
+          <span *ngIf="sortedColumn === 'errorMessage'">
+            {{ sortDirection === "asc" ? "↑" : "↓" }}
+          </span></rux-table-header-cell
+        >
         <rux-table-header-cell>Contact Name</rux-table-header-cell>
         <rux-table-header-cell>Contact Time</rux-table-header-cell>
-        <rux-table-header-cell>Error Time</rux-table-header-cell>
-        <rux-table-header-cell>Severity</rux-table-header-cell>
+        <rux-table-header-cell (click)="sortData('errorTime')"
+          >Error Time
+          <span *ngIf="sortedColumn === 'errorTime'">
+            {{ sortDirection === "asc" ? "↑" : "↓" }}
+          </span></rux-table-header-cell
+        >
+        <rux-table-header-cell (click)="sortData('errorSeverity')"
+          >Severity
+          <span *ngIf="sortedColumn === 'errorSeverity'">
+            {{ sortDirection === "asc" ? "↑" : "↓" }}
+          </span></rux-table-header-cell
+        >
         <rux-table-header-cell>Details</rux-table-header-cell>
         <rux-table-header-cell>Acknowledge</rux-table-header-cell>
       </rux-table-header-row>
     </rux-table-header>
     <rux-table-body>
-      <ng-container *ngFor="let contact of contacts">
-        <!-- If alerts exist, else don't show other contacts-->
-        <ng-container *ngIf="contact.alerts && contact.alerts.length > 0">
-          <rux-table-row *ngFor="let alert of contact.alerts">
-            <rux-table-cell>{{ alert.errorMessage }}</rux-table-cell>
-            <rux-table-cell>{{ contact.contactName }}</rux-table-cell>
-            <rux-table-cell
-              >{{ contact.contactBeginTimestamp * 1000 | date : "short" }} -
-              {{
-                contact.contactEndTimestamp * 1000 | date : "short"
-              }}</rux-table-cell
-            >
-            <rux-table-cell>{{ alert.errorTime }}</rux-table-cell>
-            <rux-table-cell>{{ alert.errorSeverity }}</rux-table-cell>
-            <!--Show Details Logic-->
-            <rux-table-cell>
-              <div style="padding: 5%; display: flex; justify-content: center">
-                <rux-button (click)="showDetails(contact)">
-                  Show Details
-                </rux-button>
+      <rux-table-row *ngFor="let alert of sortedAlerts">
+        <rux-table-cell>{{ alert.errorMessage }}</rux-table-cell>
+        <rux-table-cell>{{ alert.contactName }}</rux-table-cell>
+        <rux-table-cell>
+          {{ alert.contactBeginTimestamp * 1000 | date : "short" }} -
+          {{ alert.contactEndTimestamp * 1000 | date : "short" }}
+        </rux-table-cell>
+        <rux-table-cell>{{ alert.errorTime }}</rux-table-cell>
+        <rux-table-cell>{{ alert.errorSeverity }}</rux-table-cell>
+        <rux-table-cell>
+          <div style="padding: 5%; display: flex; justify-content: center">
+            <rux-button (click)="showDetails(alert.contact)">
+              Show Details
+            </rux-button>
+          </div>
+          <rux-dialog
+            [open]="isDetailsOpen"
+            (ruxdialogclosed)="isDetailsOpen = false"
+            header="Details"
+            class="dialog-details-main"
+          >
+            <div class="dialog-details" *ngIf="selectedContact">
+              <div>Satellite: {{ selectedContact.contactSatellite }}</div>
+              <div style="width: auto">
+                Contact Details: {{ selectedContact.contactDetail }}
               </div>
-
-              <rux-dialog
-                [open]="isDetailsOpen"
-                (ruxdialogclosed)="isDetailsOpen = false"
-                header="Details"
-                class="dialog-details-main"
-              >
-                <div class="dialog-details" *ngIf="selectedContact">
-                  <div>Satellite: {{ selectedContact.contactSatellite }}</div>
-                  <div style="width: auto">
-                    Contact Details: {{ selectedContact.contactDetail }}
-                  </div>
-                </div>
-
-                <rux-button slot="footer" (click)="isDetailsOpen = false">
-                  Close
-                </rux-button>
-              </rux-dialog>
-            </rux-table-cell>
-            <rux-table-cell>
-              <rux-push-button
-                id="acknowlButton"
-                checked=""
-                label="Acknowledge"
-                (click)="isAcknowledged(alert, contact)"
-                [disabled]="isContactAcknowledged(alert, contact)"
-              ></rux-push-button>
-            </rux-table-cell>
-          </rux-table-row>
-        </ng-container>
-      </ng-container>
+            </div>
+            <rux-button slot="footer" (click)="isDetailsOpen = false">
+              Close
+            </rux-button>
+          </rux-dialog>
+        </rux-table-cell>
+        <rux-table-cell>
+          <rux-push-button
+            label="Acknowledge"
+            (click)="isAcknowledged(alert, alert.contact)"
+            [disabled]="isContactAcknowledged(alert, alert.contact)"
+          >
+          </rux-push-button>
+        </rux-table-cell>
+      </rux-table-row>
     </rux-table-body>
   </rux-table>
 </div>
