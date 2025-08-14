@@ -17,6 +17,8 @@ export class AlertDashboardComponent {
       (data) => {
         this.contacts = data;
         this.buildSortedAlerts();
+        //Error time sorted first w/ most recent at top
+        this.sortData('errorTime');
       },
       (error) => {
         console.error('Error loading data.json', error);
@@ -83,7 +85,7 @@ export class AlertDashboardComponent {
     } else {
       this.sortedColumn = column;
       // Default direction
-      this.sortDirection = 'asc';
+      this.sortDirection = 'desc';
     }
 
     // Serverity Order

@@ -1,3 +1,4 @@
+<!-- Alert Dashboard HTML-->
 <div>
   <h1 style="padding-left: 2%">Alerts</h1>
 </div>
@@ -50,15 +51,21 @@
     </rux-table-header>
     <rux-table-body>
       <rux-table-row *ngFor="let alert of sortedAlerts">
+        <!-- Alert Message -->
         <rux-table-cell>{{ alert.errorMessage }}</rux-table-cell>
+        <!-- Contact Name -->
         <rux-table-cell>{{ alert.contactName }}</rux-table-cell>
+        <!-- Begin and End Timestamp -->
         <rux-table-cell>
           {{ alert.contactBeginTimestamp }}
           -
           {{ alert.contactEndTimestamp }}
         </rux-table-cell>
+        <!-- Error Time -->
         <rux-table-cell>{{ alert.errorTime }}</rux-table-cell>
+        <!-- Severity -->
         <rux-table-cell>{{ alert.errorSeverity }}</rux-table-cell>
+        <!-- Show Details -->
         <rux-table-cell>
           <div style="padding: 5%; display: flex; justify-content: center">
             <rux-button (click)="showDetails(alert.contact)">
@@ -82,6 +89,7 @@
             </rux-button>
           </rux-dialog>
         </rux-table-cell>
+        <!-- Acknowledge Button -->
         <rux-table-cell>
           <rux-push-button
             label="{{ acknowledgeText }}"
