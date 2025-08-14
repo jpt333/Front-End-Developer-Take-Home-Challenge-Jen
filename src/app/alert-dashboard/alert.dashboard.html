@@ -5,21 +5,34 @@
   <rux-table>
     <rux-table-header>
       <rux-table-header-row>
-        <rux-table-header-cell (click)="sortData('errorMessage')"
+        <rux-table-header-cell
+          (click)="sortData('errorMessage')"
+          class="mouse-hover"
           >Alert Message
           <span *ngIf="sortedColumn === 'errorMessage'">
             {{ sortDirection === "asc" ? "↑" : "↓" }}
           </span></rux-table-header-cell
         >
-        <rux-table-header-cell>Contact Name</rux-table-header-cell>
+        <rux-table-header-cell
+          (click)="sortData('contactName')"
+          class="mouse-hover"
+          >Contact Name
+          <span *ngIf="sortedColumn === 'contactName'">
+            {{ sortDirection === "asc" ? "↑" : "↓" }}
+          </span>
+        </rux-table-header-cell>
         <rux-table-header-cell>Contact Time</rux-table-header-cell>
-        <rux-table-header-cell (click)="sortData('errorTime')"
+        <rux-table-header-cell
+          (click)="sortData('errorTime')"
+          class="mouse-hover"
           >Error Time
           <span *ngIf="sortedColumn === 'errorTime'">
             {{ sortDirection === "asc" ? "↑" : "↓" }}
           </span></rux-table-header-cell
         >
-        <rux-table-header-cell (click)="sortData('errorSeverity')"
+        <rux-table-header-cell
+          (click)="sortData('errorSeverity')"
+          class="mouse-hover"
           >Severity
           <span *ngIf="sortedColumn === 'errorSeverity'">
             {{ sortDirection === "asc" ? "↑" : "↓" }}
@@ -34,8 +47,8 @@
         <rux-table-cell>{{ alert.errorMessage }}</rux-table-cell>
         <rux-table-cell>{{ alert.contactName }}</rux-table-cell>
         <rux-table-cell>
-          {{ alert.contactBeginTimestamp * 1000 | date : "short" }} -
-          {{ alert.contactEndTimestamp * 1000 | date : "short" }}
+          {{ alert.contactBeginTimestamp }} -
+          {{ alert.contactEndTimestamp }}
         </rux-table-cell>
         <rux-table-cell>{{ alert.errorTime }}</rux-table-cell>
         <rux-table-cell>{{ alert.errorSeverity }}</rux-table-cell>
@@ -64,7 +77,8 @@
         </rux-table-cell>
         <rux-table-cell>
           <rux-push-button
-            label="Acknowledge"
+            label="{{ acknowledgeText }}"
+            class="ack-button"
             (click)="isAcknowledged(alert, alert.contact)"
             [disabled]="isContactAcknowledged(alert, alert.contact)"
           >

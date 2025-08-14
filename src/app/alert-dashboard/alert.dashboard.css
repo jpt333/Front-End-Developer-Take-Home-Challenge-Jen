@@ -23,3 +23,20 @@ rux-push-button {
   --background-color: #571900;
   color: white;
 }
+
+rux-push-button.ack-button[checked]::part(container) {
+  background-color: #141516 !important; /* gray, or whatever color */
+  color: black !important; /* or change text color if needed */
+  border: 1px solid #b87d7d;
+  box-shadow: none;
+}
+
+rux-push-button.ack-button::part(container) {
+  background-color: #df7979;
+  color: black !important;
+  border: 1px solid #d45a5a;
+}
+
+.mouse-hover:hover {
+  cursor: pointer;
+}

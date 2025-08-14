@@ -27,6 +27,7 @@ export class AlertDashboardComponent {
   isDetailsOpen = false;
   selectedContact: any = null;
 
+  // Details
   showDetails(contact: any) {
     this.selectedContact = contact;
     this.isDetailsOpen = true;
@@ -34,7 +35,9 @@ export class AlertDashboardComponent {
 
   selectedContactt: any = null;
   acknowledgedAlerts = new Set<string>();
+  acknowledgeText: string = 'Acknowledge';
 
+  // Show acknowledged
   isAcknowledged(alert: any, contact: any) {
     this.acknowledgedAlerts.add(
       alert.errorId + alert.longMessage + contact.contactName
@@ -109,6 +112,7 @@ export class AlertDashboardComponent {
   }
 }
 
+//Interface for Alert
 interface Alert {
   errorId: string;
   errorSeverity: string;
